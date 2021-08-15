@@ -1,0 +1,10 @@
+FROM node
+
+WORKDIR /app
+
+COPY ./react /
+
+RUN npm install
+RUN npm install react-scripts
+
+RUN npm run build
