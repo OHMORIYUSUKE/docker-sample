@@ -1,4 +1,4 @@
-version: "3"
+version: "1.0"
 
 services:
   backend:
@@ -6,21 +6,20 @@ services:
     image: backend
     container_name: backend_container
     ports:
-      - "3031:3031"
+      - 3031:3031
     environment:
       TZ: "Asia/Tokyo"
-    # volumes:
-    #   - ./backend/python:/var/www/
+    volumes:
+      - ./backend/python:/var/www/
 
   frontend:
     build: ./frontend
     image: frontend
     container_name: frontend_container
-    links:
-      - backend
     ports:
-      - "80:80"
+      - 8080:80
+    volumes:
+      - ./frontend/my-app/build:/var/www
+      - ./frontend/nginx/:/etc/nginx/conf.d/
     environment:
       TZ: "Asia/Tokyo"
-    # volumes:
-    #   - ./web/vue/dist:/home/www/contents:ro

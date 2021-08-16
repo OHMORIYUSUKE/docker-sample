@@ -1,3 +1,6 @@
-FROM node:14.5.0-alpine
+FROM nginx:1.21.1
 
-WORKDIR /usr/src/app
+# TimeZoneをAsia/Tokyoに設定する
+ENV TZ Asia/Tokyo
+RUN echo "${TZ}" > /etc/timezone \
+   && dpkg-reconfigure -f noninteractive tzdata
